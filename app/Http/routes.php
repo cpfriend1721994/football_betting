@@ -19,8 +19,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-//Route::get('/user', 'UserController@index');
-
 Route::get('/match','MatchController@index');
 
 
@@ -33,5 +31,5 @@ Route::group(['middleware' => 'user'], function () {
     	return view('bet');
     });
 
-    Route::get('user',['as'=>"user", "uses" => "UserController@index"]);
+    Route::get('user','UserController@index');
 });
