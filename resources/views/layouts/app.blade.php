@@ -49,8 +49,11 @@
                 <ul class="nav navbar-nav">
                     {{-- <li><a href="{{ url('/home') }}">Home</a></li> --}}
                     {{-- <li><a href="{{ url('/match') }}">Matches</a></li> --}}
+                    @if(!Auth::guest())
                     <li><a href="{{ url('/bet') }}">Betting</a></li>
                     <li><a href="{{ url('/user') }}">User</a></li>
+                    @endif
+                    
                     @if (Auth::id()==1)
                         <li><a href="{{ url('/admin') }}"><font color="orange">Admin's Manager</font></a></li>
                     @endif
