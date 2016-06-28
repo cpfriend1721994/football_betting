@@ -29,4 +29,4 @@ Route::get('/bet', function(){
 
 Route::get('/admin', function(){
 	return view('admin');
-});
+})->middleware('admin');

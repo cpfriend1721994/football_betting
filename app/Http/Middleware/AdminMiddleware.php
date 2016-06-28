@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+
 
 class AdminMiddleware
 {
@@ -13,8 +15,10 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+
+    public function handle($request, Closure $next, $guard = null)
     {
+        if(Auth::guard($guard)->id()!=1) return redirect('admin');
         return $next($request);
     }
 }

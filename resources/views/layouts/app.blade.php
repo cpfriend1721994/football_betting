@@ -51,8 +51,8 @@
                     {{-- <li><a href="{{ url('/match') }}">Matches</a></li> --}}
                     <li><a href="{{ url('/bet') }}">Betting</a></li>
                     <li><a href="{{ url('/user') }}">User</a></li>
-                    @if (Auth::user())
-                        <li><a href="{{ url('/admin') }}"><font color="orange">Match Manager</font></a></li>
+                    @if (Auth::id()==1)
+                        <li><a href="{{ url('/admin') }}"><font color="orange">Admin's Manager</font></a></li>
                     @endif
                 </ul>
 
