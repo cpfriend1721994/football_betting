@@ -18,7 +18,7 @@ class AdminMiddleware
 
     public function handle($request, Closure $next, $guard = null)
     {
-        if(Auth::guard($guard)->id()!=1) return redirect('admin');
+        if(Auth::guard($guard)->id()!=1) return redirect('match');
         return $next($request);
     }
 }

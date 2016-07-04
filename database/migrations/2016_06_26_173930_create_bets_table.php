@@ -18,7 +18,6 @@ class CreateBetsTable extends Migration
             $table->integer('user_id');
             $table->integer('money');
             $table->string('choose');
-            $table->dateTimeTz('user_bed_time');
             $table->timestamps();
         });
     }

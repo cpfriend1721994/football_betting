@@ -16,7 +16,8 @@ class CreateMatchesTable extends Migration
             $table->increments('id');
             $table->string('home_team');
             $table->string('guest_team');
-            $table->string('permision');
+            $table->string('permision')->default("private");
+            $table->integer('status')->default(0);
             $table->integer('home_score');
             $table->integer('guest_score');
             $table->integer('home_ratio');
@@ -24,7 +25,7 @@ class CreateMatchesTable extends Migration
             $table->integer('tie_ratio');
             $table->dateTimeTz('start_time');
             $table->dateTimeTz('end_time');
-            $table->dateTimeTz('bed_time');
+            $table->dateTimeTz('bet_time');
             $table->timestamps();
         });
     }

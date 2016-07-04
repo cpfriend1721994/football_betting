@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\User2;
+use App\Bet;
+
+use App\User;
 
 use Auth;
 
-class UserController extends Controller
+class BetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +22,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $table=User2::all();
-        return view('user2')->with('table',$table);
+        $table=Bet::all();
+        return view('bet2')->with('table',$table);
     }
 
     /**
@@ -29,9 +31,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        /*$delElement = array_shift($table);*/
     }
 
     /**
@@ -54,9 +57,6 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $table=User2::find($id);
-        if (($table->id != Auth::id()) && (Auth::id() != 1)) return redirect('user');
-        return view('user')->with("id",$table);
     }
 
     /**
@@ -77,9 +77,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $user=User::find(Auth::id());
+        $moneybet = $user->money;
+        if($request->money > $moneybet){
+            $route_error = 'bet/' .$request->match_id;
+            return redirect($route_error)->with('errors','You bet '.$request->money.' coins but you just have '.$moneybet.' coins');
+        } 
+        Bet::create(
+            array(
+                'match_id' => $request->match_id,
+                'user_id' => $request->user_id,
+                'money' => $request->money,
+                'choose' => $request->choose
+                )
+        );
+            
+        $moneybet=$moneybet-$request->money;
+        User::where('id',Auth::id())->update(['money' => $moneybet]);
+
+        return redirect('match');
     }
 
     /**
@@ -91,8 +110,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $table=User2::find($id);
-        $table->delete();
-        return redirect('user2');
     }
 }

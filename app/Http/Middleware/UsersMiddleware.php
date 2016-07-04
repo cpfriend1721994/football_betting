@@ -18,7 +18,7 @@ class UsersMiddleware
     
         public function handle($request, Closure $next, $guard = null)
     {
-        if(Auth::guard($guard)->guest()) return redirect('/');
+        if(Auth::guard($guard)->guest()) return redirect('/login');
         return $next($request);
     }
     
