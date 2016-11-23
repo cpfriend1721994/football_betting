@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'admin@altplus.com', 'name' => 'Admin'],
+    'from' => ['address' => 'hedspi1721994@gmail.com', 'name' => 'Admin'],
 
     /*
     |--------------------------------------------------------------------------
